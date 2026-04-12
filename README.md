@@ -1,31 +1,42 @@
-# maiyu-skills
+# maiyu-sh
 
 60+ skills para desenvolvimento fullstack com AI coding agents. Suporta Fastify, Express, NestJS, AdonisJS, Hono, Elysia, Next.js, React, Vue e mais.
 
 [![Agent Skills](https://img.shields.io/badge/Agent_Skills-Compatible-blue?style=flat-square)](https://github.com/vercel-labs/agent-skills)
 [![GitHub stars](https://img.shields.io/github/stars/jhollyfer/maiyu-skills?style=flat-square&color=yellow)](https://github.com/jhollyfer/maiyu-skills/stargazers)
 [![AI Supported](https://img.shields.io/badge/AI_Supported-Claude_%7C_Cursor_%7C_Copilot_%7C_Codex_%7C_Windsurf-black?style=flat-square)](#)
-[![Skills](https://img.shields.io/badge/Skills-59-white?style=flat-square&color=gray)](#skills)
+[![Skills](https://img.shields.io/badge/Skills-60-white?style=flat-square&color=gray)](#skills)
 
 ## Installing
 
-Works via CLI for all major AI coding agents (Claude Code, Cursor, Copilot, Codex, Windsurf, Antigravity, etc.):
+Interactive installer — choose your IDE:
 
 ```bash
-npx skills add https://github.com/jhollyfer/maiyu-skills --all
+bash <(curl -fsSL https://raw.githubusercontent.com/jhollyfer/maiyu-skills/main/install.sh)
 ```
 
-### Claude Code (plugin nativo)
+Or clone and run:
 
 ```bash
-claude plugin marketplace add jhollyfer/maiyu-skills-marketplace
-claude plugin install maiyu-skills
+git clone https://github.com/jhollyfer/maiyu-skills.git
+cd maiyu-skills
+./install.sh
 ```
 
-### Uso local (sem instalar)
+### Claude Code (direct)
 
 ```bash
-claude --plugin-dir /caminho/para/maiyu-skills
+claude --plugin-dir /path/to/maiyu-sh-skills
+```
+
+### Usage
+
+```
+/maiyu-sh                        # activate all 60+ skills
+/maiyu-sh:backend-controller     # generate HTTP controllers
+/maiyu-sh:frontend-form          # create form components
+/maiyu-sh:backend-scaffold       # scaffold a full CRUD
+/maiyu-sh:backend-auth           # add authentication
 ```
 
 ## Skills
