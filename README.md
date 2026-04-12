@@ -12,7 +12,7 @@
 Works via CLI for all major AI coding agents (Claude Code, Cursor, Copilot, Codex, Windsurf, Antigravity, etc.):
 
 ```bash
-npx skills add https://github.com/jhollyfer/maiyu-skills
+npx skills add https://github.com/jhollyfer/maiyu-skills --all
 ```
 
 ### Claude Code (plugin nativo)
