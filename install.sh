@@ -13,22 +13,33 @@ RED='\033[0;31m'
 MAGENTA='\033[0;35m'
 WHITE='\033[1;37m'
 CHECK="${GREEN}✓${RESET}"
-UNCHECK="${DIM}○${RESET}"
 ARROW="${CYAN}→${RESET}"
 WARN="${YELLOW}!${RESET}"
 BOX_ON="${GREEN}[✓]${RESET}"
 BOX_OFF="${DIM}[ ]${RESET}"
 
 # ─── Detect script location ──────────────────────────────────────────────────
+if [[ "${BASH_SOURCE[0]}" == *"/proc/"* ]] || [[ "${BASH_SOURCE[0]}" == "/dev/stdin" ]] || [[ "${BASH_SOURCE[0]}" == "-" ]]; then
+    echo ""
+    echo -e "  ${RED}Cannot run piped.${RESET} Use one of:"
+    echo ""
+    echo -e "  ${GREEN}npx skills add https://github.com/jhollyfer/maiyu-skills${RESET}"
+    echo ""
+    echo -e "  ${DIM}Or clone first:${RESET}"
+    echo -e "  ${DIM}git clone https://github.com/jhollyfer/maiyu-skills.git${RESET}"
+    echo -e "  ${DIM}cd maiyu-skills && ./install.sh${RESET}"
+    echo ""
+    exit 1
+fi
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILLS_DIR="${SCRIPT_DIR}/skills"
 
 # ─── Skill counts ────────────────────────────────────────────────────────────
-BACKEND_COUNT=$(find "$SKILLS_DIR" -maxdepth 1 -name "backend-*" -type d | wc -l | tr -d ' ')
-FRONTEND_COUNT=$(find "$SKILLS_DIR" -maxdepth 1 -name "frontend-*" -type d | wc -l | tr -d ' ')
-DEVOPS_COUNT=$(find "$SKILLS_DIR" -maxdepth 1 -name "devops-*" -type d | wc -l | tr -d ' ')
-FULLSTACK_COUNT=$(find "$SKILLS_DIR" -maxdepth 1 -name "fullstack-*" -type d | wc -l | tr -d ' ')
-TOTAL_COUNT=$((BACKEND_COUNT + FRONTEND_COUNT + DEVOPS_COUNT + FULLSTACK_COUNT + 1))
+BACKEND_COUNT=$(find "$SKILLS_DIR/backend/modules" -maxdepth 1 -name "*.md" -type f 2>/dev/null | wc -l | tr -d ' ')
+FRONTEND_COUNT=$(find "$SKILLS_DIR/frontend/modules" -maxdepth 1 -name "*.md" -type f 2>/dev/null | wc -l | tr -d ' ')
+DEVOPS_COUNT=$(find "$SKILLS_DIR/devops/modules" -maxdepth 1 -name "*.md" -type f 2>/dev/null | wc -l | tr -d ' ')
+TOTAL_COUNT=$((BACKEND_COUNT + FRONTEND_COUNT + DEVOPS_COUNT))
 
 # ─── Header ───────────────────────────────────────────────────────────────────
 clear
@@ -60,10 +71,10 @@ echo ""
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 echo -e "  ${WHITE}STEP 2 — What do you need?${RESET}"
 echo ""
-echo -e "  ${BLUE}b${RESET})  ${BOLD}Backend${RESET}    ${DIM}${BACKEND_COUNT} skills — controllers, services, auth, models...${RESET}"
-echo -e "  ${CYAN}f${RESET})  ${BOLD}Frontend${RESET}   ${DIM}${FRONTEND_COUNT} skills — forms, tables, components, pages...${RESET}"
-echo -e "  ${YELLOW}d${RESET})  ${BOLD}DevOps${RESET}     ${DIM}${DEVOPS_COUNT} skills — docker, CI/CD, github actions...${RESET}"
-echo -e "  ${GREEN}a${RESET})  ${BOLD}All${RESET}        ${DIM}everything above + fullstack monorepo${RESET}"
+echo -e "  ${BLUE}b${RESET})  ${BOLD}Backend${RESET}    ${DIM}${BACKEND_COUNT} modules — controllers, services, auth, models...${RESET}"
+echo -e "  ${CYAN}f${RESET})  ${BOLD}Frontend${RESET}   ${DIM}${FRONTEND_COUNT} modules — forms, tables, components, pages...${RESET}"
+echo -e "  ${YELLOW}d${RESET})  ${BOLD}DevOps${RESET}     ${DIM}${DEVOPS_COUNT} modules — docker, CI/CD, github actions...${RESET}"
+echo -e "  ${GREEN}a${RESET})  ${BOLD}All${RESET}        ${DIM}everything above${RESET}"
 echo ""
 echo -e "  ${DIM}Combine letters for multiple: bf = backend + frontend${RESET}"
 echo ""
@@ -75,13 +86,11 @@ echo ""
 INSTALL_BACKEND=false
 INSTALL_FRONTEND=false
 INSTALL_DEVOPS=false
-INSTALL_FULLSTACK=false
 
 if [[ "$cat_choice" == *"a"* ]]; then
     INSTALL_BACKEND=true
     INSTALL_FRONTEND=true
     INSTALL_DEVOPS=true
-    INSTALL_FULLSTACK=true
 else
     [[ "$cat_choice" == *"b"* ]] && INSTALL_BACKEND=true
     [[ "$cat_choice" == *"f"* ]] && INSTALL_FRONTEND=true
@@ -89,45 +98,21 @@ else
 fi
 
 # Validate at least one category
-if ! $INSTALL_BACKEND && ! $INSTALL_FRONTEND && ! $INSTALL_DEVOPS && ! $INSTALL_FULLSTACK; then
+if ! $INSTALL_BACKEND && ! $INSTALL_FRONTEND && ! $INSTALL_DEVOPS; then
     echo -e "  ${RED}No category selected.${RESET} Run the script again."
     exit 1
 fi
 
-# ─── Build skill list ─────────────────────────────────────────────────────────
-SELECTED_SKILLS=()
-SELECTED_SKILLS+=("maiyu-sh")  # always include meta-skill
-
-if $INSTALL_BACKEND; then
-    while IFS= read -r dir; do
-        SELECTED_SKILLS+=("$(basename "$dir")")
-    done < <(find "$SKILLS_DIR" -maxdepth 1 -name "backend-*" -type d | sort)
-fi
-
-if $INSTALL_FRONTEND; then
-    while IFS= read -r dir; do
-        SELECTED_SKILLS+=("$(basename "$dir")")
-    done < <(find "$SKILLS_DIR" -maxdepth 1 -name "frontend-*" -type d | sort)
-fi
-
-if $INSTALL_DEVOPS; then
-    while IFS= read -r dir; do
-        SELECTED_SKILLS+=("$(basename "$dir")")
-    done < <(find "$SKILLS_DIR" -maxdepth 1 -name "devops-*" -type d | sort)
-fi
-
-if $INSTALL_FULLSTACK; then
-    while IFS= read -r dir; do
-        SELECTED_SKILLS+=("$(basename "$dir")")
-    done < <(find "$SKILLS_DIR" -maxdepth 1 -name "fullstack-*" -type d | sort)
-fi
-
-SELECTED_COUNT=${#SELECTED_SKILLS[@]}
+# ─── Count selected ──────────────────────────────────────────────────────────
+SELECTED_COUNT=0
+$INSTALL_BACKEND && SELECTED_COUNT=$((SELECTED_COUNT + BACKEND_COUNT))
+$INSTALL_FRONTEND && SELECTED_COUNT=$((SELECTED_COUNT + FRONTEND_COUNT))
+$INSTALL_DEVOPS && SELECTED_COUNT=$((SELECTED_COUNT + DEVOPS_COUNT))
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # STEP 3: Install
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-echo -e "  ${WHITE}STEP 3 — Installing ${SELECTED_COUNT} skills...${RESET}"
+echo -e "  ${WHITE}STEP 3 — Installing ${SELECTED_COUNT} modules...${RESET}"
 echo ""
 
 # ─── Install functions ────────────────────────────────────────────────────────
@@ -217,34 +202,23 @@ echo ""
 
 # Show what was installed
 if $INSTALL_BACKEND; then
-    echo -e "  ${BOX_ON} ${BLUE}Backend${RESET}    ${DIM}${BACKEND_COUNT} skills${RESET}"
+    echo -e "  ${BOX_ON} ${BLUE}Backend${RESET}    ${DIM}${BACKEND_COUNT} modules${RESET}"
 else
-    echo -e "  ${BOX_OFF} ${DIM}Backend    ${BACKEND_COUNT} skills${RESET}"
+    echo -e "  ${BOX_OFF} ${DIM}Backend    ${BACKEND_COUNT} modules${RESET}"
 fi
 
 if $INSTALL_FRONTEND; then
-    echo -e "  ${BOX_ON} ${CYAN}Frontend${RESET}   ${DIM}${FRONTEND_COUNT} skills${RESET}"
+    echo -e "  ${BOX_ON} ${CYAN}Frontend${RESET}   ${DIM}${FRONTEND_COUNT} modules${RESET}"
 else
-    echo -e "  ${BOX_OFF} ${DIM}Frontend   ${FRONTEND_COUNT} skills${RESET}"
+    echo -e "  ${BOX_OFF} ${DIM}Frontend   ${FRONTEND_COUNT} modules${RESET}"
 fi
 
 if $INSTALL_DEVOPS; then
-    echo -e "  ${BOX_ON} ${YELLOW}DevOps${RESET}     ${DIM}${DEVOPS_COUNT} skills${RESET}"
+    echo -e "  ${BOX_ON} ${YELLOW}DevOps${RESET}     ${DIM}${DEVOPS_COUNT} modules${RESET}"
 else
-    echo -e "  ${BOX_OFF} ${DIM}DevOps     ${DEVOPS_COUNT} skills${RESET}"
-fi
-
-if $INSTALL_FULLSTACK; then
-    echo -e "  ${BOX_ON} ${MAGENTA}Fullstack${RESET}  ${DIM}${FULLSTACK_COUNT} skills${RESET}"
-else
-    echo -e "  ${BOX_OFF} ${DIM}Fullstack  ${FULLSTACK_COUNT} skills${RESET}"
+    echo -e "  ${BOX_OFF} ${DIM}DevOps     ${DEVOPS_COUNT} modules${RESET}"
 fi
 
 echo ""
-echo -e "  ${WHITE}${SELECTED_COUNT} skills ready.${RESET} Usage:"
-echo ""
-echo -e "     ${GREEN}/maiyu-sh${RESET}                   ${DIM}activate all installed skills${RESET}"
-echo -e "     ${GREEN}/maiyu-sh:backend-scaffold${RESET}  ${DIM}scaffold a full CRUD${RESET}"
-echo -e "     ${GREEN}/maiyu-sh:frontend-form${RESET}     ${DIM}generate form components${RESET}"
-echo -e "     ${GREEN}/maiyu-sh:backend-auth${RESET}      ${DIM}add authentication${RESET}"
+echo -e "  ${WHITE}${SELECTED_COUNT} modules ready.${RESET}"
 echo ""

@@ -10,100 +10,25 @@
   },
   "plugins": [
     {
-      "name": "maiyu-sh",
-      "description": "Master skill that activates the full maiyu-sh development toolkit with 60+ skills for backend, frontend, devops and fullstack development",
-      "source": "./",
-      "strict": false,
-      "skills": ["./skills/maiyu-sh"]
-    },
-    {
       "name": "maiyu-sh-backend",
-      "description": "24 backend development skills — controllers, services, repositories, models, auth, middleware, migrations, testing and more. Supports Fastify, Express, NestJS, AdonisJS, Hono, Elysia",
+      "description": "25 backend development skills — controllers, services, repositories, models, auth, middleware, migrations, testing and more. Supports Fastify, Express, NestJS, AdonisJS, Hono, Elysia",
       "source": "./",
       "strict": false,
-      "skills": [
-        "./skills/backend-auth",
-        "./skills/backend-clone-import-export",
-        "./skills/backend-controller",
-        "./skills/backend-database-config",
-        "./skills/backend-di-registry",
-        "./skills/backend-e2e-test",
-        "./skills/backend-email-template",
-        "./skills/backend-env",
-        "./skills/backend-error-handling",
-        "./skills/backend-kernel",
-        "./skills/backend-middleware",
-        "./skills/backend-migration",
-        "./skills/backend-model",
-        "./skills/backend-realtime",
-        "./skills/backend-repository",
-        "./skills/backend-sandbox",
-        "./skills/backend-scaffold",
-        "./skills/backend-schema",
-        "./skills/backend-seeder",
-        "./skills/backend-service",
-        "./skills/backend-structure",
-        "./skills/backend-test",
-        "./skills/backend-use-case",
-        "./skills/backend-validator"
-      ]
+      "skills": ["./skills/backend"]
     },
     {
       "name": "maiyu-sh-frontend",
       "description": "31 frontend development skills — forms, components, data tables, CRUD pages, kanban, rich editor, permissions, stores and more. Supports Next.js, React, Vue, TanStack, shadcn/Radix",
       "source": "./",
       "strict": false,
-      "skills": [
-        "./skills/frontend-api-service",
-        "./skills/frontend-auth-store",
-        "./skills/frontend-calendar-view",
-        "./skills/frontend-component",
-        "./skills/frontend-crud-page",
-        "./skills/frontend-data-table",
-        "./skills/frontend-data-table-patterns",
-        "./skills/frontend-datepicker",
-        "./skills/frontend-dynamic-form",
-        "./skills/frontend-error-screens",
-        "./skills/frontend-field-mask",
-        "./skills/frontend-file-upload",
-        "./skills/frontend-filter",
-        "./skills/frontend-form",
-        "./skills/frontend-hook-query",
-        "./skills/frontend-kanban",
-        "./skills/frontend-next-page",
-        "./skills/frontend-page-shell",
-        "./skills/frontend-permission",
-        "./skills/frontend-query-patterns",
-        "./skills/frontend-rbac",
-        "./skills/frontend-rich-editor",
-        "./skills/frontend-route",
-        "./skills/frontend-schema",
-        "./skills/frontend-seo",
-        "./skills/frontend-settings-page",
-        "./skills/frontend-store",
-        "./skills/frontend-tree-component",
-        "./skills/frontend-tree-navigation",
-        "./skills/frontend-ui",
-        "./skills/frontend-view"
-      ]
+      "skills": ["./skills/frontend"]
     },
     {
       "name": "maiyu-sh-devops",
       "description": "3 DevOps skills — Dockerfile, Docker Compose, and GitHub Actions CI/CD workflows for Node.js projects",
       "source": "./",
       "strict": false,
-      "skills": [
-        "./skills/devops-docker-compose",
-        "./skills/devops-dockerfile",
-        "./skills/devops-github-actions"
-      ]
-    },
-    {
-      "name": "maiyu-sh-fullstack",
-      "description": "Fullstack monorepo setup and scaffolding skill",
-      "source": "./",
-      "strict": false,
-      "skills": ["./skills/fullstack-monorepo"]
+      "skills": ["./skills/devops"]
     }
   ]
 }

@@ -10,24 +10,15 @@
 ## Installing
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/jhollyfer/maiyu-skills/main/install.sh)
+npx skills add https://github.com/jhollyfer/maiyu-skills
 ```
 
 The installer will ask you:
 
-1. **Which AI agent** — Claude Code, Cursor, Copilot, Windsurf, Codex, or all
-2. **Which categories** — Backend, Frontend, DevOps, or all
-
-```
-  STEP 1 — Choose your AI agent:
-  1) Claude Code    2) Cursor    3) Copilot    4) Windsurf    5) Codex    6) All
-
-  STEP 2 — What do you need?
-  b) Backend     24 skills
-  f) Frontend    31 skills
-  d) DevOps       3 skills
-  a) All         60 skills
-```
+1. **Which skills** — Backend, Frontend, DevOps, or all
+2. **Which agents** — Claude Code, Cursor, Copilot, Windsurf, Codex, and more
+3. **Scope** — Project or Global
+4. **Method** — Symlink (recommended) or Copy
 
 ### Manual install
 
@@ -43,108 +34,91 @@ cd maiyu-skills
 claude --plugin-dir /path/to/maiyu-sh-skills
 ```
 
-## Usage
-
-```
-/maiyu-sh                        # activate all skills — agent auto-detects your stack
-/maiyu-sh:backend-controller     # generate HTTP controllers
-/maiyu-sh:frontend-form          # create form components
-/maiyu-sh:backend-scaffold       # scaffold a full CRUD
-/maiyu-sh:backend-auth           # add authentication
-```
-
-## Plugins
-
-The marketplace groups skills into installable plugins:
-
-| Plugin | Skills | Category |
-|--------|--------|----------|
-| `maiyu-sh` | 1 | Master skill — activates everything |
-| `maiyu-sh-backend` | 24 | Backend development |
-| `maiyu-sh-frontend` | 31 | Frontend development |
-| `maiyu-sh-devops` | 3 | DevOps & CI/CD |
-| `maiyu-sh-fullstack` | 1 | Monorepo setup |
-
 ## Skills
 
-### Backend (24)
+### Backend (25 modules)
 
-| Skill | Description |
-|-------|-------------|
-| `backend-auth` | Modulos completos de autenticacao |
-| `backend-clone-import-export` | Endpoints de clone, import e export |
-| `backend-controller` | Controllers/route handlers HTTP |
-| `backend-database-config` | Configuracao de conexao com banco de dados |
-| `backend-di-registry` | Registry de injecao de dependencias |
-| `backend-e2e-test` | Setup e helpers de testes E2E |
-| `backend-email-template` | Servico de email com templates EJS |
-| `backend-env` | Validacao de variaveis de ambiente |
-| `backend-error-handling` | Sistemas de tratamento de erros |
-| `backend-kernel` | Bootstrap/kernel do servidor |
-| `backend-middleware` | Middlewares e hooks |
-| `backend-migration` | Migrations de banco de dados |
-| `backend-model` | Models/entities |
-| `backend-realtime` | Comunicacao em tempo real (WebSocket) |
-| `backend-repository` | Repository pattern (contrato + implementacao + in-memory) |
-| `backend-sandbox` | Execucao sandboxed de scripts |
-| `backend-scaffold` | Scaffold completo de CRUD |
-| `backend-schema` | Schemas de API/documentacao |
-| `backend-seeder` | Seeders de banco de dados |
-| `backend-service` | Service pattern (contrato + implementacao) |
-| `backend-structure` | Estrutura de pastas e arquivos |
-| `backend-test` | Testes unitarios e E2E |
-| `backend-use-case` | Use cases/logica de negocio |
-| `backend-validator` | Validacao de dados |
+Controllers, services, repositories, models, auth, middleware, migrations, testing, scaffolding, seeders, validators, error handling, WebSocket, email templates, environment variables, dependency injection, monorepo setup.
 
-### Frontend (31)
+**Frameworks:** Fastify, Express, NestJS, AdonisJS, Hono, Elysia/Bun
 
-| Skill | Description |
-|-------|-------------|
-| `frontend-api-service` | Camada de cliente API |
-| `frontend-auth-store` | Estado de autenticacao com Zustand |
-| `frontend-calendar-view` | Componentes de calendario (mes, semana, agenda) |
-| `frontend-component` | Componentes React |
-| `frontend-crud-page` | Paginas CRUD completas |
-| `frontend-data-table` | Data tables com TanStack Table |
-| `frontend-data-table-patterns` | DataTable generico com virtualizacao |
-| `frontend-datepicker` | Datepicker com selecao single/range |
-| `frontend-dynamic-form` | Formularios dinamicos a partir de definicoes |
-| `frontend-error-screens` | Telas de erro, loading e empty state |
-| `frontend-field-mask` | Mascaras de input |
-| `frontend-file-upload` | Upload de arquivos (compound components) |
-| `frontend-filter` | Sistemas de filtro baseados em URL |
-| `frontend-form` | Formularios e componentes de campo |
-| `frontend-hook-query` | Hooks TanStack Query (queries e mutations) |
-| `frontend-kanban` | Kanban board com drag-and-drop |
-| `frontend-next-page` | Paginas Next.js App Router |
-| `frontend-page-shell` | Layout shell (Header/Content/Footer) |
-| `frontend-permission` | Sistemas de permissao e RBAC |
-| `frontend-query-patterns` | Patterns de TanStack Query |
-| `frontend-rbac` | Role-based access control |
-| `frontend-rich-editor` | Editor rich text com TipTap |
-| `frontend-route` | Definicoes de rotas file-based |
-| `frontend-schema` | Schemas Zod de validacao |
-| `frontend-seo` | Configuracao SEO |
-| `frontend-settings-page` | Paginas de configuracao do sistema |
-| `frontend-store` | Stores Zustand |
-| `frontend-tree-component` | Componentes de arvore hierarquica |
-| `frontend-tree-navigation` | Navegacao hierarquica |
-| `frontend-ui` | Componentes UI primitivos (shadcn/Radix) |
-| `frontend-view` | Tipos de visualizacao (lista, card, kanban, calendario) |
-
-### DevOps (3)
-
-| Skill | Description |
-|-------|-------------|
-| `devops-docker-compose` | Docker Compose para diferentes ambientes |
-| `devops-dockerfile` | Dockerfiles para projetos Node.js |
-| `devops-github-actions` | Workflows CI/CD com GitHub Actions |
-
-### Fullstack (1)
-
-| Skill | Description |
-|-------|-------------|
+| Module | Description |
+|--------|-------------|
+| `auth` | Modulos completos de autenticacao (JWT, OAuth2, sessions) |
+| `clone-import-export` | Endpoints de clone, import e export |
+| `controller` | Controllers/route handlers HTTP |
+| `database-config` | Configuracao de conexao com banco de dados |
+| `di-registry` | Registry de injecao de dependencias |
+| `e2e-test` | Setup e helpers de testes E2E |
+| `email-template` | Servico de email com templates EJS |
+| `env` | Validacao de variaveis de ambiente |
+| `error-handling` | Sistemas de tratamento de erros |
+| `kernel` | Bootstrap/kernel do servidor |
+| `middleware` | Middlewares e hooks |
+| `migration` | Migrations de banco de dados |
+| `model` | Models/entities |
+| `realtime` | Comunicacao em tempo real (WebSocket) |
+| `repository` | Repository pattern (contrato + implementacao + in-memory) |
+| `sandbox` | Execucao sandboxed de scripts |
+| `scaffold` | Scaffold completo de CRUD |
+| `schema` | Schemas de API/documentacao |
+| `seeder` | Seeders de banco de dados |
+| `service` | Service pattern (contrato + implementacao) |
+| `structure` | Estrutura de pastas e arquivos |
+| `test` | Testes unitarios e E2E |
+| `use-case` | Use cases/logica de negocio |
+| `validator` | Validacao de dados |
 | `fullstack-monorepo` | Setup de monorepo fullstack |
+
+### Frontend (31 modules)
+
+Forms, components, data tables, CRUD pages, kanban, calendar, file upload, filters, rich editor, permissions, RBAC, stores, routes, SEO, error screens, date pickers, field masks, tree navigation, settings pages, API services.
+
+**Frameworks:** Next.js, TanStack Start, React (Vite), Remix, Vue
+
+| Module | Description |
+|--------|-------------|
+| `api-service` | Camada de cliente API |
+| `auth-store` | Estado de autenticacao com Zustand |
+| `calendar-view` | Componentes de calendario (mes, semana, agenda) |
+| `component` | Componentes React |
+| `crud-page` | Paginas CRUD completas |
+| `data-table` | Data tables com TanStack Table |
+| `data-table-patterns` | DataTable generico com virtualizacao |
+| `datepicker` | Datepicker com selecao single/range |
+| `dynamic-form` | Formularios dinamicos a partir de definicoes |
+| `error-screens` | Telas de erro, loading e empty state |
+| `field-mask` | Mascaras de input |
+| `file-upload` | Upload de arquivos (compound components) |
+| `filter` | Sistemas de filtro baseados em URL |
+| `form` | Formularios e componentes de campo |
+| `hook-query` | Hooks TanStack Query (queries e mutations) |
+| `kanban` | Kanban board com drag-and-drop |
+| `next-page` | Paginas Next.js App Router |
+| `page-shell` | Layout shell (Header/Content/Footer) |
+| `permission` | Sistemas de permissao e RBAC |
+| `query-patterns` | Patterns de TanStack Query |
+| `rbac` | Role-based access control |
+| `rich-editor` | Editor rich text com TipTap |
+| `route` | Definicoes de rotas file-based |
+| `schema` | Schemas Zod de validacao |
+| `seo` | Configuracao SEO |
+| `settings-page` | Paginas de configuracao do sistema |
+| `store` | Stores Zustand |
+| `tree-component` | Componentes de arvore hierarquica |
+| `tree-navigation` | Navegacao hierarquica |
+| `ui` | Componentes UI primitivos (shadcn/Radix) |
+| `view` | Tipos de visualizacao (lista, card, kanban, calendario) |
+
+### DevOps (3 modules)
+
+Dockerfile, Docker Compose, and GitHub Actions CI/CD workflows for Node.js projects.
+
+| Module | Description |
+|--------|-------------|
+| `dockerfile` | Dockerfiles para projetos Node.js |
+| `docker-compose` | Docker Compose para diferentes ambientes |
+| `github-actions` | Workflows CI/CD com GitHub Actions |
 
 ## Conventions
 
@@ -154,7 +128,7 @@ All skills enforce these code conventions:
 2. Zero ternaries — use if/else, early return, const mapper
 3. Zero `as TYPE` (except `as const`) — use type guards, generics
 4. Explicit return types — all functions and components must have typed returns
-5. Multiple conditions → const mapper (object lookup)
+5. Multiple conditions — const mapper (object lookup)
 
 ## Author
 
