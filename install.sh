@@ -1,11 +1,11 @@
 #!/bin/bash
 set -e
 
-echo "Instalando maiyu-skills skills para Claude Code..."
+echo "Installing maiyu-skills..."
 
-claude plugin marketplace add jhollyfer/maiyu-marketplace
-claude plugin install maiyu-skills
+# Universal (works with Cursor, Claude Code, Copilot, Codex, Windsurf, etc.)
+npx skills add https://github.com/jhollyfer/maiyu-skills
 
 echo ""
-echo "maiyu-skills skills instaladas com sucesso!"
-echo "Use /backend-controller, /frontend-form, etc. no Claude Code."
+echo "maiyu-skills installed successfully!"
+echo "Use /backend-controller, /frontend-form, etc. in your AI agent."
