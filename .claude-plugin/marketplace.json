@@ -5,30 +5,16 @@
     "email": "jhollyferr@gmail.com"
   },
   "metadata": {
-    "description": "60+ fullstack development skills for AI coding agents",
-    "version": "1.0.0"
+    "description": "59 fullstack development skills for AI coding agents",
+    "version": "2.0.0"
   },
   "plugins": [
     {
-      "name": "maiyu-sh-backend",
-      "description": "25 backend development skills — controllers, services, repositories, models, auth, middleware, migrations, testing and more. Supports Fastify, Express, NestJS, AdonisJS, Hono, Elysia",
+      "name": "maiyu-sh",
+      "description": "59 fullstack development skills — backend (controllers, services, repositories, models, auth, middleware, migrations, testing), frontend (forms, components, data tables, CRUD pages, kanban, rich editor, permissions, stores), and DevOps (Docker, CI/CD). Supports Fastify, Express, NestJS, Next.js, React, Vue and more",
       "source": "./",
       "strict": false,
-      "skills": ["./skills/backend"]
-    },
-    {
-      "name": "maiyu-sh-frontend",
-      "description": "31 frontend development skills — forms, components, data tables, CRUD pages, kanban, rich editor, permissions, stores and more. Supports Next.js, React, Vue, TanStack, shadcn/Radix",
-      "source": "./",
-      "strict": false,
-      "skills": ["./skills/frontend"]
-    },
-    {
-      "name": "maiyu-sh-devops",
-      "description": "3 DevOps skills — Dockerfile, Docker Compose, and GitHub Actions CI/CD workflows for Node.js projects",
-      "source": "./",
-      "strict": false,
-      "skills": ["./skills/devops"]
+      "skills": ["./skills/maiyu-sh"]
     }
   ]
 }

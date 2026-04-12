@@ -1,11 +1,11 @@
 # maiyu-sh
 
-60+ skills para desenvolvimento fullstack com AI coding agents. Suporta Fastify, Express, NestJS, AdonisJS, Hono, Elysia, Next.js, React, Vue e mais.
+59 skills para desenvolvimento fullstack com AI coding agents. Suporta Fastify, Express, NestJS, AdonisJS, Hono, Elysia, Next.js, React, Vue e mais.
 
 [![Agent Skills](https://img.shields.io/badge/Agent_Skills-Compatible-blue?style=flat-square)](https://github.com/vercel-labs/agent-skills)
 [![GitHub stars](https://img.shields.io/github/stars/jhollyfer/maiyu-skills?style=flat-square&color=yellow)](https://github.com/jhollyfer/maiyu-skills/stargazers)
 [![AI Supported](https://img.shields.io/badge/AI_Supported-Claude_%7C_Cursor_%7C_Copilot_%7C_Codex_%7C_Windsurf-black?style=flat-square)](#)
-[![Skills](https://img.shields.io/badge/Skills-60-white?style=flat-square&color=gray)](#skills)
+[![Skills](https://img.shields.io/badge/Skills-59-white?style=flat-square&color=gray)](#skills)
 
 ## Installing
 
@@ -15,10 +15,9 @@ npx skills add https://github.com/jhollyfer/maiyu-skills
 
 The installer will ask you:
 
-1. **Which skills** — Backend, Frontend, DevOps, or all
-2. **Which agents** — Claude Code, Cursor, Copilot, Windsurf, Codex, and more
-3. **Scope** — Project or Global
-4. **Method** — Symlink (recommended) or Copy
+1. **Which agents** — Claude Code, Cursor, Copilot, Windsurf, Codex, and more
+2. **Scope** — Project or Global
+3. **Method** — Symlink (recommended) or Copy
 
 ### Manual install
 
@@ -61,7 +60,7 @@ Controllers, services, repositories, models, auth, middleware, migrations, testi
 | `repository` | Repository pattern (contrato + implementacao + in-memory) |
 | `sandbox` | Execucao sandboxed de scripts |
 | `scaffold` | Scaffold completo de CRUD |
-| `schema` | Schemas de API/documentacao |
+| `api-schema` | Schemas de API/documentacao |
 | `seeder` | Seeders de banco de dados |
 | `service` | Service pattern (contrato + implementacao) |
 | `structure` | Estrutura de pastas e arquivos |
@@ -101,7 +100,7 @@ Forms, components, data tables, CRUD pages, kanban, calendar, file upload, filte
 | `rbac` | Role-based access control |
 | `rich-editor` | Editor rich text com TipTap |
 | `route` | Definicoes de rotas file-based |
-| `schema` | Schemas Zod de validacao |
+| `zod-schema` | Schemas Zod de validacao |
 | `seo` | Configuracao SEO |
 | `settings-page` | Paginas de configuracao do sistema |
 | `store` | Stores Zustand |

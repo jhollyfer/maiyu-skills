@@ -15,8 +15,6 @@ WHITE='\033[1;37m'
 CHECK="${GREEN}✓${RESET}"
 ARROW="${CYAN}→${RESET}"
 WARN="${YELLOW}!${RESET}"
-BOX_ON="${GREEN}[✓]${RESET}"
-BOX_OFF="${DIM}[ ]${RESET}"
 
 # ─── Detect script location ──────────────────────────────────────────────────
 if [[ "${BASH_SOURCE[0]}" == *"/proc/"* ]] || [[ "${BASH_SOURCE[0]}" == "/dev/stdin" ]] || [[ "${BASH_SOURCE[0]}" == "-" ]]; then
@@ -33,13 +31,10 @@ if [[ "${BASH_SOURCE[0]}" == *"/proc/"* ]] || [[ "${BASH_SOURCE[0]}" == "/dev/st
 fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SKILLS_DIR="${SCRIPT_DIR}/skills"
+SKILLS_DIR="${SCRIPT_DIR}/skills/maiyu-sh"
 
-# ─── Skill counts ────────────────────────────────────────────────────────────
-BACKEND_COUNT=$(find "$SKILLS_DIR/backend/modules" -maxdepth 1 -name "*.md" -type f 2>/dev/null | wc -l | tr -d ' ')
-FRONTEND_COUNT=$(find "$SKILLS_DIR/frontend/modules" -maxdepth 1 -name "*.md" -type f 2>/dev/null | wc -l | tr -d ' ')
-DEVOPS_COUNT=$(find "$SKILLS_DIR/devops/modules" -maxdepth 1 -name "*.md" -type f 2>/dev/null | wc -l | tr -d ' ')
-TOTAL_COUNT=$((BACKEND_COUNT + FRONTEND_COUNT + DEVOPS_COUNT))
+# ─── Skill count ─────────────────────────────────────────────────────────────
+TOTAL_COUNT=$(find "$SKILLS_DIR/modules" -maxdepth 1 -name "*.md" -type f 2>/dev/null | wc -l | tr -d ' ')
 
 # ─── Header ───────────────────────────────────────────────────────────────────
 clear
@@ -53,7 +48,7 @@ echo ""
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # STEP 1: Choose IDE
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-echo -e "  ${WHITE}STEP 1 — Choose your AI agent:${RESET}"
+echo -e "  ${WHITE}Choose your AI agent:${RESET}"
 echo ""
 echo -e "  ${CYAN}1${RESET})  Claude Code"
 echo -e "  ${CYAN}2${RESET})  Cursor"
@@ -67,52 +62,9 @@ read -r ide_choice
 echo ""
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# STEP 2: Choose categories
+# Install
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-echo -e "  ${WHITE}STEP 2 — What do you need?${RESET}"
-echo ""
-echo -e "  ${BLUE}b${RESET})  ${BOLD}Backend${RESET}    ${DIM}${BACKEND_COUNT} modules — controllers, services, auth, models...${RESET}"
-echo -e "  ${CYAN}f${RESET})  ${BOLD}Frontend${RESET}   ${DIM}${FRONTEND_COUNT} modules — forms, tables, components, pages...${RESET}"
-echo -e "  ${YELLOW}d${RESET})  ${BOLD}DevOps${RESET}     ${DIM}${DEVOPS_COUNT} modules — docker, CI/CD, github actions...${RESET}"
-echo -e "  ${GREEN}a${RESET})  ${BOLD}All${RESET}        ${DIM}everything above${RESET}"
-echo ""
-echo -e "  ${DIM}Combine letters for multiple: bf = backend + frontend${RESET}"
-echo ""
-echo -ne "  ${ARROW} Choose ${DIM}[b/f/d/a]${RESET}: "
-read -r cat_choice
-echo ""
-
-# Parse category choices
-INSTALL_BACKEND=false
-INSTALL_FRONTEND=false
-INSTALL_DEVOPS=false
-
-if [[ "$cat_choice" == *"a"* ]]; then
-    INSTALL_BACKEND=true
-    INSTALL_FRONTEND=true
-    INSTALL_DEVOPS=true
-else
-    [[ "$cat_choice" == *"b"* ]] && INSTALL_BACKEND=true
-    [[ "$cat_choice" == *"f"* ]] && INSTALL_FRONTEND=true
-    [[ "$cat_choice" == *"d"* ]] && INSTALL_DEVOPS=true
-fi
-
-# Validate at least one category
-if ! $INSTALL_BACKEND && ! $INSTALL_FRONTEND && ! $INSTALL_DEVOPS; then
-    echo -e "  ${RED}No category selected.${RESET} Run the script again."
-    exit 1
-fi
-
-# ─── Count selected ──────────────────────────────────────────────────────────
-SELECTED_COUNT=0
-$INSTALL_BACKEND && SELECTED_COUNT=$((SELECTED_COUNT + BACKEND_COUNT))
-$INSTALL_FRONTEND && SELECTED_COUNT=$((SELECTED_COUNT + FRONTEND_COUNT))
-$INSTALL_DEVOPS && SELECTED_COUNT=$((SELECTED_COUNT + DEVOPS_COUNT))
-
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# STEP 3: Install
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-echo -e "  ${WHITE}STEP 3 — Installing ${SELECTED_COUNT} modules...${RESET}"
+echo -e "  ${WHITE}Installing ${TOTAL_COUNT} modules...${RESET}"
 echo ""
 
 # ─── Install functions ────────────────────────────────────────────────────────
@@ -147,28 +99,28 @@ install_claude_code() {
 
 install_cursor() {
     echo -e "  ${ARROW} ${BOLD}Cursor${RESET}"
-    create_link "$HOME/.cursor/skills" "maiyu-sh" "$SCRIPT_DIR/skills"
+    create_link "$HOME/.cursor/skills" "maiyu-sh" "$SKILLS_DIR"
     echo -e "  ${CHECK} Skills linked ${DIM}→ ~/.cursor/skills/maiyu-sh${RESET}"
     echo ""
 }
 
 install_copilot() {
     echo -e "  ${ARROW} ${BOLD}GitHub Copilot${RESET}"
-    create_link "$HOME/.github" "maiyu-sh-skills" "$SCRIPT_DIR/skills"
+    create_link "$HOME/.github" "maiyu-sh-skills" "$SKILLS_DIR"
     echo -e "  ${CHECK} Skills linked ${DIM}→ ~/.github/maiyu-sh-skills${RESET}"
     echo ""
 }
 
 install_windsurf() {
     echo -e "  ${ARROW} ${BOLD}Windsurf${RESET}"
-    create_link "$HOME/.windsurf/skills" "maiyu-sh" "$SCRIPT_DIR/skills"
+    create_link "$HOME/.windsurf/skills" "maiyu-sh" "$SKILLS_DIR"
     echo -e "  ${CHECK} Skills linked ${DIM}→ ~/.windsurf/skills/maiyu-sh${RESET}"
     echo ""
 }
 
 install_codex() {
     echo -e "  ${ARROW} ${BOLD}Codex${RESET}"
-    create_link "$HOME/.codex/skills" "maiyu-sh" "$SCRIPT_DIR/skills"
+    create_link "$HOME/.codex/skills" "maiyu-sh" "$SKILLS_DIR"
     echo -e "  ${CHECK} Skills linked ${DIM}→ ~/.codex/skills/maiyu-sh${RESET}"
     echo ""
 }
@@ -199,26 +151,5 @@ echo -e "${GREEN}${BOLD}  ╔═════════════════
 echo -e "${GREEN}${BOLD}  ║            Installation complete!            ║${RESET}"
 echo -e "${GREEN}${BOLD}  ╚══════════════════════════════════════════════╝${RESET}"
 echo ""
-
-# Show what was installed
-if $INSTALL_BACKEND; then
-    echo -e "  ${BOX_ON} ${BLUE}Backend${RESET}    ${DIM}${BACKEND_COUNT} modules${RESET}"
-else
-    echo -e "  ${BOX_OFF} ${DIM}Backend    ${BACKEND_COUNT} modules${RESET}"
-fi
-
-if $INSTALL_FRONTEND; then
-    echo -e "  ${BOX_ON} ${CYAN}Frontend${RESET}   ${DIM}${FRONTEND_COUNT} modules${RESET}"
-else
-    echo -e "  ${BOX_OFF} ${DIM}Frontend   ${FRONTEND_COUNT} modules${RESET}"
-fi
-
-if $INSTALL_DEVOPS; then
-    echo -e "  ${BOX_ON} ${YELLOW}DevOps${RESET}     ${DIM}${DEVOPS_COUNT} modules${RESET}"
-else
-    echo -e "  ${BOX_OFF} ${DIM}DevOps     ${DEVOPS_COUNT} modules${RESET}"
-fi
-
-echo ""
-echo -e "  ${WHITE}${SELECTED_COUNT} modules ready.${RESET}"
+echo -e "  ${WHITE}${TOTAL_COUNT} modules ready.${RESET}"
 echo ""
