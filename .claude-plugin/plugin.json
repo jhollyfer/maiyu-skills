@@ -1,0 +1,8 @@
+{
+  "name": "maiyu-skills",
+  "version": "1.0.0",
+  "description": "60+ skills para desenvolvimento fullstack - backend, frontend, devops. Suporta Fastify, Express, NestJS, Next.js, React, Vue e mais.",
+  "author": {
+    "name": "jhollyfer"
+  }
+}
