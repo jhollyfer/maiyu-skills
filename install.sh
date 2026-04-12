@@ -2,9 +2,10 @@
 set -e
 
 echo "Installing maiyu-skills..."
+echo ""
 
-# Universal (works with Cursor, Claude Code, Copilot, Codex, Windsurf, etc.)
-npx skills add https://github.com/jhollyfer/maiyu-skills --all
+# Instala todas as skills, mas deixa o CLI perguntar qual agent usar
+npx skills add https://github.com/jhollyfer/maiyu-skills --skill '*'
 
 echo ""
 echo "maiyu-skills installed successfully!"
