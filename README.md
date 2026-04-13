@@ -1,4 +1,4 @@
-# maiyu-sh
+# maiyu-skills
 
 59 skills para desenvolvimento fullstack com AI coding agents. Suporta Fastify, Express, NestJS, AdonisJS, Hono, Elysia, Next.js, React, Vue e mais.
 
@@ -10,14 +10,27 @@
 ## Installing
 
 ```bash
-npx skills add https://github.com/jhollyfer/maiyu-skills
+npx skills add https://github.com/jhollyfer/maiyu-skills --all
 ```
 
-The installer will ask you:
+### Options
 
-1. **Which agents** — Claude Code, Cursor, Copilot, Windsurf, Codex, and more
-2. **Scope** — Project or Global
-3. **Method** — Symlink (recommended) or Copy
+```bash
+# Install all skills to all agents (recommended)
+npx skills add https://github.com/jhollyfer/maiyu-skills --all
+
+# Interactive — choose which skills and agents
+npx skills add https://github.com/jhollyfer/maiyu-skills
+
+# Only Claude Code
+npx skills add https://github.com/jhollyfer/maiyu-skills --all -a claude-code
+
+# Only specific skills
+npx skills add https://github.com/jhollyfer/maiyu-skills --skill 'maiyu:backend-auth' --skill 'maiyu:frontend-form'
+
+# Global install (available across all projects)
+npx skills add https://github.com/jhollyfer/maiyu-skills --all -g
+```
 
 ### Manual install
 
@@ -25,12 +38,6 @@ The installer will ask you:
 git clone https://github.com/jhollyfer/maiyu-skills.git
 cd maiyu-skills
 ./install.sh
-```
-
-### Claude Code (direct)
-
-```bash
-claude --plugin-dir /path/to/maiyu-sh-skills
 ```
 
 ## Skills
