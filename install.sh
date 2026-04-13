@@ -31,16 +31,16 @@ if [[ "${BASH_SOURCE[0]}" == *"/proc/"* ]] || [[ "${BASH_SOURCE[0]}" == "/dev/st
 fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SKILLS_DIR="${SCRIPT_DIR}/skills/maiyu-sh"
+SKILLS_DIR="${SCRIPT_DIR}/skills/maiyu"
 
 # ─── Skill count ─────────────────────────────────────────────────────────────
-TOTAL_COUNT=$(find "$SKILLS_DIR/modules" -maxdepth 1 -name "*.md" -type f 2>/dev/null | wc -l | tr -d ' ')
+TOTAL_COUNT=$(find "$SKILLS_DIR" -maxdepth 2 -name "SKILL.md" -type f 2>/dev/null | wc -l | tr -d ' ')
 
 # ─── Header ───────────────────────────────────────────────────────────────────
 clear
 echo ""
 echo -e "${MAGENTA}${BOLD}  ╔══════════════════════════════════════════════╗${RESET}"
-echo -e "${MAGENTA}${BOLD}  ║             maiyu-sh installer               ║${RESET}"
+echo -e "${MAGENTA}${BOLD}  ║             maiyu skills installer               ║${RESET}"
 echo -e "${MAGENTA}${BOLD}  ║        ${RESET}${DIM}${TOTAL_COUNT} fullstack development skills${RESET}${MAGENTA}${BOLD}        ║${RESET}"
 echo -e "${MAGENTA}${BOLD}  ╚══════════════════════════════════════════════╝${RESET}"
 echo ""
@@ -88,8 +88,8 @@ install_claude_code() {
 
     if command -v claude &>/dev/null; then
         CLAUDE_PLUGINS_DIR="$HOME/.claude/plugins/local"
-        create_link "$CLAUDE_PLUGINS_DIR" "maiyu-sh" "$SCRIPT_DIR"
-        echo -e "  ${CHECK} Plugin linked ${DIM}→ ${CLAUDE_PLUGINS_DIR}/maiyu-sh${RESET}"
+        create_link "$CLAUDE_PLUGINS_DIR" "maiyu" "$SCRIPT_DIR"
+        echo -e "  ${CHECK} Plugin linked ${DIM}→ ${CLAUDE_PLUGINS_DIR}/maiyu${RESET}"
         echo -e "  ${DIM}  Or: claude --plugin-dir ${SCRIPT_DIR}${RESET}"
     else
         echo -e "  ${WARN} CLI not found — use: ${DIM}claude --plugin-dir ${SCRIPT_DIR}${RESET}"
@@ -99,29 +99,29 @@ install_claude_code() {
 
 install_cursor() {
     echo -e "  ${ARROW} ${BOLD}Cursor${RESET}"
-    create_link "$HOME/.cursor/skills" "maiyu-sh" "$SKILLS_DIR"
-    echo -e "  ${CHECK} Skills linked ${DIM}→ ~/.cursor/skills/maiyu-sh${RESET}"
+    create_link "$HOME/.cursor/skills" "maiyu" "$SKILLS_DIR"
+    echo -e "  ${CHECK} Skills linked ${DIM}→ ~/.cursor/skills/maiyu${RESET}"
     echo ""
 }
 
 install_copilot() {
     echo -e "  ${ARROW} ${BOLD}GitHub Copilot${RESET}"
-    create_link "$HOME/.github" "maiyu-sh-skills" "$SKILLS_DIR"
-    echo -e "  ${CHECK} Skills linked ${DIM}→ ~/.github/maiyu-sh-skills${RESET}"
+    create_link "$HOME/.github" "maiyu-skills" "$SKILLS_DIR"
+    echo -e "  ${CHECK} Skills linked ${DIM}→ ~/.github/maiyu-skills${RESET}"
     echo ""
 }
 
 install_windsurf() {
     echo -e "  ${ARROW} ${BOLD}Windsurf${RESET}"
-    create_link "$HOME/.windsurf/skills" "maiyu-sh" "$SKILLS_DIR"
-    echo -e "  ${CHECK} Skills linked ${DIM}→ ~/.windsurf/skills/maiyu-sh${RESET}"
+    create_link "$HOME/.windsurf/skills" "maiyu" "$SKILLS_DIR"
+    echo -e "  ${CHECK} Skills linked ${DIM}→ ~/.windsurf/skills/maiyu${RESET}"
     echo ""
 }
 
 install_codex() {
     echo -e "  ${ARROW} ${BOLD}Codex${RESET}"
-    create_link "$HOME/.codex/skills" "maiyu-sh" "$SKILLS_DIR"
-    echo -e "  ${CHECK} Skills linked ${DIM}→ ~/.codex/skills/maiyu-sh${RESET}"
+    create_link "$HOME/.codex/skills" "maiyu" "$SKILLS_DIR"
+    echo -e "  ${CHECK} Skills linked ${DIM}→ ~/.codex/skills/maiyu${RESET}"
     echo ""
 }
 

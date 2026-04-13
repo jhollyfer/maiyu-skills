@@ -10,11 +10,11 @@
   },
   "plugins": [
     {
-      "name": "maiyu-sh",
+      "name": "maiyu-skills",
       "description": "59 fullstack development skills — backend (controllers, services, repositories, models, auth, middleware, migrations, testing), frontend (forms, components, data tables, CRUD pages, kanban, rich editor, permissions, stores), and DevOps (Docker, CI/CD). Supports Fastify, Express, NestJS, Next.js, React, Vue and more",
       "source": "./",
       "strict": false,
-      "skills": ["./skills/maiyu-sh"]
+      "skills": ["./skills/maiyu"]
     }
   ]
 }
