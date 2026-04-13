@@ -11,18 +11,18 @@ metadata:
 
 # maiyu:devops — All DevOps Skills
 
-When this skill is activated, you have access to **all 3 DevOps skills**. Identify the task and read the matching skill before generating code.
+When this skill is activated, you have access to **all 3 DevOps modules**. Identify the task and read the matching module before generating code.
 
-## Available Skills
+## Available Modules
 
-| Task | Skill to invoke |
-|------|----------------|
-| Create Dockerfile / containerize | `maiyu:devops-dockerfile` |
-| Create Docker Compose (dev/staging/prod) | `maiyu:devops-docker-compose` |
-| Create CI/CD pipeline / GitHub Actions | `maiyu:devops-github-actions` |
+| Task | Module to read |
+|------|---------------|
+| Create Dockerfile / containerize | `skills/dockerfile.md` |
+| Create Docker Compose (dev/staging/prod) | `skills/docker-compose.md` |
+| Create CI/CD pipeline / GitHub Actions | `skills/github-actions.md` |
 
 ## Compound Tasks
 
-- **"Deploy the project"** — Invoke: `devops-dockerfile`, `devops-docker-compose`, `devops-github-actions`
-- **"Containerize"** — Invoke: `devops-dockerfile`, `devops-docker-compose`
-- **"Set up CI/CD"** — Invoke: `devops-github-actions`
+- **"Deploy the project"** — Read: `dockerfile`, `docker-compose`, `github-actions`
+- **"Containerize"** — Read: `dockerfile`, `docker-compose`
+- **"Set up CI/CD"** — Read: `github-actions`

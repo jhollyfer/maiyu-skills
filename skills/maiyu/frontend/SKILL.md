@@ -28,53 +28,53 @@ When this skill is activated, you have access to **all 31 frontend skills**. Ide
    - **State**: `zustand` | `@tanstack/react-query`
    - **Validator**: `zod` | `class-validator` | `joi`
    - **Package manager**: `npm` | `pnpm` | `yarn`
-2. **Identify the task** — Match to the skill below
-3. **Read the skill** — Use `Skill` tool to invoke the specific `maiyu:frontend-*` skill
+2. **Identify the task** — Match to a module below
+3. **Read the module** — Use `Read` tool on the relative path (e.g., `skills/form.md`)
 4. **Follow conventions** — All code MUST follow the rules below
 
-## Available Skills
+## Available Modules
 
-| Task | Skill to invoke |
-|------|----------------|
-| Create a form / edit form | `maiyu:frontend-form` |
-| Create a dynamic form from definitions | `maiyu:frontend-dynamic-form` |
-| Create a Zod validation schema | `maiyu:frontend-schema` |
-| Create a React component | `maiyu:frontend-component` |
-| Create a complete CRUD page | `maiyu:frontend-crud-page` |
-| Create a data table | `maiyu:frontend-data-table` |
-| Advanced data table with virtualization | `maiyu:frontend-data-table-patterns` |
-| Create a date picker (single/range) | `maiyu:frontend-datepicker` |
-| Create error/loading/empty screens | `maiyu:frontend-error-screens` |
-| Add input masks | `maiyu:frontend-field-mask` |
-| Add file upload component | `maiyu:frontend-file-upload` |
-| Create URL-based filter system | `maiyu:frontend-filter` |
-| Create TanStack Query hooks | `maiyu:frontend-hook-query` |
-| TanStack Query patterns | `maiyu:frontend-query-patterns` |
-| Create kanban board | `maiyu:frontend-kanban` |
-| Create a calendar view | `maiyu:frontend-calendar-view` |
-| Create a Next.js App Router page | `maiyu:frontend-next-page` |
-| Create page shell layout | `maiyu:frontend-page-shell` |
-| Add permission system | `maiyu:frontend-permission` |
-| Add role-based access control | `maiyu:frontend-rbac` |
-| Create a rich text editor | `maiyu:frontend-rich-editor` |
-| Define file-based routes | `maiyu:frontend-route` |
-| Configure SEO | `maiyu:frontend-seo` |
-| Create system settings page | `maiyu:frontend-settings-page` |
-| Create Zustand store | `maiyu:frontend-store` |
-| Create auth store (Zustand) | `maiyu:frontend-auth-store` |
-| Create API client / service | `maiyu:frontend-api-service` |
-| Create tree/hierarchical component | `maiyu:frontend-tree-component` |
-| Create tree navigation | `maiyu:frontend-tree-navigation` |
-| Create UI primitives (shadcn/Radix) | `maiyu:frontend-ui` |
-| Create view type (list/card/kanban) | `maiyu:frontend-view` |
+| Task | Module to read |
+|------|---------------|
+| Create a form / edit form | `skills/form.md` |
+| Create a dynamic form from definitions | `skills/dynamic-form.md` |
+| Create a Zod validation schema | `skills/schema.md` |
+| Create a React component | `skills/component.md` |
+| Create a complete CRUD page | `skills/crud-page.md` |
+| Create a data table | `skills/data-table.md` |
+| Advanced data table with virtualization | `skills/data-table-patterns.md` |
+| Create a date picker (single/range) | `skills/datepicker.md` |
+| Create error/loading/empty screens | `skills/error-screens.md` |
+| Add input masks | `skills/field-mask.md` |
+| Add file upload component | `skills/file-upload.md` |
+| Create URL-based filter system | `skills/filter.md` |
+| Create TanStack Query hooks | `skills/hook-query.md` |
+| TanStack Query patterns | `skills/query-patterns.md` |
+| Create kanban board | `skills/kanban.md` |
+| Create a calendar view | `skills/calendar-view.md` |
+| Create a Next.js App Router page | `skills/next-page.md` |
+| Create page shell layout | `skills/page-shell.md` |
+| Add permission system | `skills/permission.md` |
+| Add role-based access control | `skills/rbac.md` |
+| Create a rich text editor | `skills/rich-editor.md` |
+| Define file-based routes | `skills/route.md` |
+| Configure SEO | `skills/seo.md` |
+| Create system settings page | `skills/settings-page.md` |
+| Create Zustand store | `skills/store.md` |
+| Create auth store (Zustand) | `skills/auth-store.md` |
+| Create API client / service | `skills/api-service.md` |
+| Create tree/hierarchical component | `skills/tree-component.md` |
+| Create tree navigation | `skills/tree-navigation.md` |
+| Create UI primitives (shadcn/Radix) | `skills/ui.md` |
+| Create view type (list/card/kanban) | `skills/view.md` |
 
 ## Compound Tasks
 
-- **"Create a CRUD for X"** — Invoke: `frontend-crud-page`, `frontend-form`, `frontend-data-table`, `frontend-hook-query`
-- **"Create a new page"** — Invoke: `frontend-next-page` or `frontend-route`, `frontend-page-shell`, `frontend-component`
-- **"Create a form"** — Invoke: `frontend-form`, `frontend-schema`, `frontend-field-mask`, `frontend-datepicker`
-- **"Add authentication"** — Invoke: `frontend-auth-store`, `frontend-permission`, `frontend-rbac`
-- **"Add a filter"** — Invoke: `frontend-filter`, `frontend-data-table`
+- **"Create a CRUD for X"** — Read: `crud-page`, `form`, `data-table`, `hook-query`
+- **"Create a new page"** — Read: `next-page` or `route`, `page-shell`, `component`
+- **"Create a form"** — Read: `form`, `schema`, `field-mask`, `datepicker`
+- **"Add authentication"** — Read: `auth-store`, `permission`, `rbac`
+- **"Add a filter"** — Read: `filter`, `data-table`
 
 ## Conventions
 

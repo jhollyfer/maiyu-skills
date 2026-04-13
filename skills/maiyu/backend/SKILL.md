@@ -26,45 +26,46 @@ When this skill is activated, you have access to **all 24 backend skills**. Iden
    - **Validator**: `zod` | `class-validator` | `joi` | `@sinclair/typebox`
    - **Test runner**: `vitest` | `jest`
    - **Package manager**: `npm` | `pnpm` | `yarn`
-2. **Identify the task** — Match to the skill below
-3. **Read the skill** — Use `Skill` tool to invoke the specific `maiyu:backend-*` skill
+2. **Identify the task** — Match to a module below
+3. **Read the module** — Use `Read` tool on the relative path (e.g., `skills/scaffold.md`)
 4. **Follow conventions** — All code MUST follow the rules below
 
-## Available Skills
+## Available Modules
 
-| Task | Skill to invoke |
-|------|----------------|
-| Scaffold CRUD / generate all layers | `maiyu:backend-scaffold` |
-| Create controller / route handler | `maiyu:backend-controller` |
-| Create service / business logic | `maiyu:backend-service` |
-| Create use case | `maiyu:backend-use-case` |
-| Create repository (contract + impl) | `maiyu:backend-repository` |
-| Create model / entity | `maiyu:backend-model` |
-| Add authentication (JWT, OAuth) | `maiyu:backend-auth` |
-| Create middleware / hooks | `maiyu:backend-middleware` |
-| Add data validation | `maiyu:backend-validator` |
-| Create API schema / docs | `maiyu:backend-schema` |
-| Create database migration | `maiyu:backend-migration` |
-| Create database seeder | `maiyu:backend-seeder` |
-| Configure database connection | `maiyu:backend-database-config` |
-| Configure environment variables | `maiyu:backend-env` |
-| Configure dependency injection | `maiyu:backend-di-registry` |
-| Configure server bootstrap | `maiyu:backend-kernel` |
-| Define project folder structure | `maiyu:backend-structure` |
-| Add error handling / exceptions | `maiyu:backend-error-handling` |
-| Add unit tests | `maiyu:backend-test` |
-| Add E2E test setup | `maiyu:backend-e2e-test` |
-| Add email service with templates | `maiyu:backend-email-template` |
-| Add WebSocket / real-time | `maiyu:backend-realtime` |
-| Add sandboxed script execution | `maiyu:backend-sandbox` |
-| Add clone, import, or export | `maiyu:backend-clone-import-export` |
+| Task | Module to read |
+|------|---------------|
+| Scaffold CRUD / generate all layers | `skills/scaffold.md` + `references/crud-actions.md` |
+| Create controller / route handler | `skills/controller.md` |
+| Create service / business logic | `skills/service.md` |
+| Create use case | `skills/use-case.md` |
+| Create repository (contract + impl) | `skills/repository.md` + `references/repository-templates.md` |
+| Create model / entity | `skills/model.md` + `references/mongoose-patterns.md` |
+| Add authentication (JWT, OAuth) | `skills/auth.md` |
+| Create middleware / hooks | `skills/middleware.md` |
+| Add data validation | `skills/validator.md` |
+| Create API schema / docs | `skills/schema.md` |
+| Create database migration | `skills/migration.md` |
+| Create database seeder | `skills/seeder.md` |
+| Configure database connection | `skills/database-config.md` |
+| Configure environment variables | `skills/env.md` |
+| Configure dependency injection | `skills/di-registry.md` |
+| Configure server bootstrap | `skills/kernel.md` |
+| Define project folder structure | `skills/structure.md` |
+| Add error handling / exceptions | `skills/error-handling.md` |
+| Add unit tests | `skills/test.md` + `references/test-patterns.md` |
+| Add E2E test setup | `skills/e2e-test.md` |
+| Add email service with templates | `skills/email-template.md` |
+| Add WebSocket / real-time | `skills/realtime.md` |
+| Add sandboxed script execution | `skills/sandbox.md` |
+| Add clone, import, or export | `skills/clone-import-export.md` |
+| Set up fullstack monorepo | `skills/fullstack-monorepo.md` |
 
 ## Compound Tasks
 
-- **"Create a CRUD for X"** — Invoke: `backend-scaffold`, `backend-controller`, `backend-service`, `backend-repository`, `backend-model`, `backend-schema`, `backend-validator`
-- **"Set up the project"** — Invoke: `backend-structure`, `backend-kernel`, `backend-env`, `backend-database-config`, `backend-di-registry`
-- **"Add authentication"** — Invoke: `backend-auth`, `backend-middleware`
-- **"Add tests"** — Invoke: `backend-test`, `backend-e2e-test`
+- **"Create a CRUD for X"** — Read: `scaffold`, `controller`, `service`, `repository`, `model`, `schema`, `validator`
+- **"Set up the project"** — Read: `structure`, `kernel`, `env`, `database-config`, `di-registry`
+- **"Add authentication"** — Read: `auth`, `middleware`
+- **"Add tests"** — Read: `test`, `e2e-test`
 
 ## Conventions
 
